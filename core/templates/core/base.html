@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Legacy Life - Organ Donation{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'core/style.css' %}">
+</head>
+<body>
+
+<header>
+    <div class="top-bar">
+        <h1>Legacy Life</h1>
+        <p class="tagline">Turning loss into life through organ donation</p>
+    </div>
+
+    <nav class="navbar">
+        <ul class="nav-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Register</a></li>
+            <li><a href="#">Login</a></li>
+            <li><a href="#">Myths</a></li>
+            <li><a href="#">Eligibility</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    {% block content %}
+    <!-- Page-specific content will appear here -->
+    {% endblock %}
+</main>
+
+<div style="background: black; color: white; text-align: center; padding: 20px;">
+    This is the FOOTER TEST. If you see this, the footer works!
+</div>
+
+
+<footer class="site-footer">
+    <div class="footer-content">
+        <p>&copy; 2025 Legacy Life | Designed with ❤️ to promote organ donation</p>
+        <p>
+            <a href="#">Privacy Policy</a> | 
+            <a href="#">Terms of Service</a> | 
+            <a href="#">Contact Us</a>
+        </p>
+    </div>
+</footer>
+
+</body>
+</html>

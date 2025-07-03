@@ -1,0 +1,48 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}Home - Legacy Life{% endblock %}
+
+{% block content %}
+
+<a href="{% url 'admin_login' %}" class="admin-logo-link">
+    <img src="{% static 'core/images/adminlogo1.jpg' %}" alt="Admin Login" class="admin-logo">
+</a>
+
+
+<section class="hero">
+    <h2>National Organ Donation Helpline</h2>
+    <p class="helpline-number">📞 Call: 1800 103 7100</p>
+    <p class="languages">Available in: English | हिंदी | ಕನ್ನಡ | தமிழ் | മലയാളം | मराठी | తెలుగు | ଓଡ଼ିଆ</p>
+</section>
+
+<section class="actions">
+    <a class="btn pledge" href="#">Pledge Organs</a>
+    <a class="btn donate" href="#">Donate Funds</a>
+</section>
+
+<section class="video">
+    <h3>Inspiring Organ Donation Journey</h3>
+    <div class="video-container">
+        <iframe width="560" height="315"
+            src="https://www.youtube.com/embed/V9oXkucoJUE"
+            title="Organ Donation Awareness Video"
+            frameborder="0"
+            allowfullscreen>
+        </iframe>
+    </div>
+</section>
+
+<section class="video">
+    <h3>ಮರಣ ನಂತರ ಅಂಗದಾನ</h3>
+    <div class="video-container">
+        <iframe width="560" height="315"
+            src="https://www.youtube.com/embed/Z1nARoHY_oQ"
+            title="Organ Donation Awareness in Kannada"
+            frameborder="0"
+            allowfullscreen>
+        </iframe>
+    </div>
+</section>
+
+{% endblock %}
