@@ -1,0 +1,22 @@
+{% extends "core/base.html" %}
+{% block title %}Register | Legacy Life{% endblock %}
+
+{% block content %}
+<div class="user-register-container">
+    <h2>Create an Account</h2>
+
+    {% for message in messages %}
+        <div class="message">{{ message }}</div>
+    {% endfor %}
+
+    <form method="POST">
+        {% csrf_token %}
+        <input type="text" name="username" placeholder="Username" required>
+        <input type="email" name="email" placeholder="Email address" required>
+        <input type="password" name="password" placeholder="Password" required>
+        <button type="submit">Register</button>
+    </form>
+
+    <p>Already have an account? <a href="{% url 'login' %}">Login here</a></p>
+</div>
+{% endblock %}

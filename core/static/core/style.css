@@ -234,3 +234,72 @@ body {
 .admin-login-container button:hover {
     background-color: #0056b3;
 }
+
+/* ================================
+   User Registration Form Styles
+   ================================ */
+
+.user-register-container {
+    max-width: 400px;
+    margin: 80px auto;
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.user-register-container h2 {
+    text-align: center;
+    color: #004080;
+    margin-bottom: 20px;
+}
+
+.user-register-container form {
+    display: flex;
+    flex-direction: column;
+}
+
+.user-register-container input {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1em;
+}
+
+.user-register-container button {
+    padding: 10px;
+    background-color: #007acc;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.user-register-container button:hover {
+    background-color: #005f99;
+}
+
+.user-register-container p {
+    text-align: center;
+    font-size: 0.95em;
+}
+
+.user-register-container a {
+    color: #007acc;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.user-register-container a:hover {
+    text-decoration: underline;
+}
+
+.message {
+    color: red;
+    font-size: 14px;
+    margin-bottom: 10px;
+    text-align: center;
+}
