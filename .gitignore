@@ -19,3 +19,6 @@ legacy_env/
 # OS-specific
 .DS_Store
 Thumbs.db
+
+# Static files
+staticfiles/
