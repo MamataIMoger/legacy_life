@@ -14,7 +14,7 @@ def register(request):
         user = User.objects.create_user(username=username, password=password, email=email)
         messages.success(request, "Account created successfully")
         return redirect('login')
-    return render(request, 'accounts/register.html')
+    return render(request, 'register.html')
 
 def login_view(request):
     if request.method == 'POST':
@@ -28,7 +28,7 @@ def login_view(request):
         else:
             messages.error(request, "Invalid credentials")
             return redirect('login')
-    return render(request, 'accounts/login.html')
+    return render(request, 'login.html')
 
 def logout_view(request):
     logout(request)

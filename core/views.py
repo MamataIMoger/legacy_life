@@ -3,7 +3,7 @@ from django.contrib.auth import authenticate, login
 
 # Home Page View
 def home(request):
-    return render(request, 'core/home.html')
+    return render(request, 'home.html')
 
 # Admin Login View
 def admin_login(request):
@@ -18,4 +18,4 @@ def admin_login(request):
         else:
             error = "Invalid credentials or not an admin user."
 
-    return render(request, 'core/admin_login.html', {'error': error})
+    return render(request, 'admin_login.html', {'error': error})

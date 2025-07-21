@@ -1,0 +1,29 @@
+<!-- templates/check.html -->
+{% extends "base.html" %}
+
+{% block title %}Eligibility Checker{% endblock %}
+
+{% block content %}
+    <h2>Organ Donation Eligibility Checker</h2>
+
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Check Eligibility</button>
+    </form>
+
+    {% if result %}
+        <div class="result {% if result == 'Not Eligible' %}not-eligible{% endif %}">
+            <strong>Result:</strong> {{ result }}
+        </div>
+    {% endif %}
+
+    {% if hospitals %}
+        <h3>Suggested Hospitals:</h3>
+        <ul>
+            {% for hospital in hospitals %}
+                <li>{{ hospital }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endblock %}
