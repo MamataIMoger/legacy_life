@@ -1,0 +1,29 @@
+{% extends "core/base.html" %}
+{% block content %}
+<h2 style="text-align:center; margin: 20px 0;">Organ Donation: Myths vs Facts</h2>
+
+<div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;">
+  {% for item in myths %}
+  <div style="width: 280px; height: 180px; perspective: 1000px;">
+    <div style="position: relative; width: 100%; height: 100%; text-align: center;
+                transition: transform 0.6s; transform-style: preserve-3d;"
+         onmouseover="this.style.transform='rotateY(180deg)'" onmouseout="this.style.transform='rotateY(0deg)'">
+      
+      <div style="position: absolute; width: 100%; height: 100%; backface-visibility: hidden;
+                  background: #f8d7da; color: #721c24; display: flex; align-items: center; justify-content: center;
+                  padding: 10px; border-radius: 10px;">
+        <strong>Myth:</strong> {{ item.myth }}
+      </div>
+      
+      <div style="position: absolute; width: 100%; height: 100%; backface-visibility: hidden;
+                  background: #d4edda; color: #155724; transform: rotateY(180deg);
+                  display: flex; align-items: center; justify-content: center; padding: 10px;
+                  border-radius: 10px;">
+        <strong>Fact:</strong> {{ item.fact }}
+      </div>
+
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

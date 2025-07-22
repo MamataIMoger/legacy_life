@@ -41,7 +41,8 @@ INSTALLED_APPS = [
 
     'core',
     'accounts',
-    'eligibility',  # Uncomment this line if the eligibility app is included
+    'eligibility',  # Uncomment this line if the eligibility app is included 
+    'mythbuster', #Added this feature on 22/07 temporarily
 ]
 
 MIDDLEWARE = [
