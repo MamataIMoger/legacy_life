@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-def myths_view(request):
+def myths(request):
     myths_data = [
         {"myth": "Organ donation disfigures the body.",
          "fact": "Organs are removed with surgical precision, and the body is respectfully restored."},
