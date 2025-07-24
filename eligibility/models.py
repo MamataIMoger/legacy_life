@@ -10,3 +10,11 @@ class EligibilityCheck(models.Model):
 
     def __str__(self):
         return f"Check at {self.checked_at} - Eligible: {self.is_eligible}"
+
+class Hospital(models.Model):
+    name = models.CharField(max_length=100)
+    address = models.TextField()
+    website = models.URLField()
+
+    def __str__(self):
+        return self.name
