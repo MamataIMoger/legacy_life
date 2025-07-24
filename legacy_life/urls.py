@@ -22,4 +22,6 @@ urlpatterns = [
     path('', include('core.urls')),
     path('accounts/', include('accounts.urls')),
     path('eligibility/', include('eligibility.urls')),
+    path('myths/', include('mythbuster.urls')),
+
 ]

@@ -24,4 +24,4 @@ def myths(request):
          "fact": "It's optional. Consent and family support matter more."},
         # You can add more from the full list...
     ]
-    return render(request, 'mythbuster/myths.html', {'myths': myths_data})
+    return render(request, 'myths.html', {'myths': myths_data})
