@@ -7,3 +7,7 @@ class EligibilityForm(forms.Form):
     chronic_disease = forms.BooleanField(label='Any chronic disease?', required=False)
     infection = forms.BooleanField(label='Active infection?', required=False)
     organ_donor_before = forms.BooleanField(label='Have you donated before?', required=False)
+    recent_surgery = forms.BooleanField(required=False)
+    cancer_history = forms.BooleanField(required=False)
+    substance_abuse = forms.BooleanField(required=False)
+    pregnant = forms.BooleanField(required=False)  # for female users

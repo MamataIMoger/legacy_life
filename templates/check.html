@@ -1,29 +1,46 @@
-<!-- templates/check.html -->
 {% extends "base.html" %}
-
 {% block title %}Eligibility Checker{% endblock %}
 
 {% block content %}
-    <h2>Organ Donation Eligibility Checker</h2>
+<h2 style="text-align: center; margin-bottom: 30px;">Organ Donation Eligibility Checker</h2>
 
+<div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; padding: 0 20px;">
+  
+  <!-- LEFT: Eligibility Form -->
+  <div style="flex: 0 0 45%; background: #f8f8f8; padding: 20px; border-radius: 10px;">
+    <h3>Check Your Eligibility</h3>
     <form method="POST">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Check Eligibility</button>
+        <button type="submit" style="padding: 10px 20px; background: #007b33; color: white; border: none; border-radius: 5px;">Check Eligibility</button>
     </form>
+  </div>
 
+  <!-- RIGHT: Results -->
+  <div style="flex: 0 0 45%; background: #ffffff; padding: 20px; border-radius: 10px; box-shadow: 0 0 8px rgba(0,0,0,0.1);">
     {% if result %}
-        <div class="result {% if result == 'Not Eligible' %}not-eligible{% endif %}">
-            <strong>Result:</strong> {{ result }}
-        </div>
-    {% endif %}
-
-    {% if hospitals %}
-        <h3>Suggested Hospitals:</h3>
-        <ul>
+      {% if result == "Eligible" %}
+        <h3 style="color: green;">🎉 Congratulations! You are eligible to donate organs.</h3>
+        {% if hospitals %}
+          <h4>Here are some hospitals you can reach out to:</h4>
+          <ul>
             {% for hospital in hospitals %}
-                <li>{{ hospital }}</li>
+              <li>
+                <strong>{{ hospital.name }}</strong><br>
+                📍 {{ hospital.location }}<br>
+                🌐 <a href="{{ hospital.website }}" target="_blank">{{ hospital.website }}</a>
+              </li>
             {% endfor %}
-        </ul>
+          </ul>
+        {% endif %}
+      {% else %}
+        <h3 style="color: red;">❌ You are not eligible to donate right now.</h3>
+        <p><strong>Reason:</strong> {{ ineligibility_reason }}</p>
+        <p><strong>Advice:</strong> {{ advice }}</p>
+      {% endif %}
+    {% else %}
+      <p>Fill out the form to check your eligibility.</p>
     {% endif %}
+  </div>
+</div>
 {% endblock %}

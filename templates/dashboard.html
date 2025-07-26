@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Dashboard | Legacy Life{% endblock %}
+
+{% block content %}
+<div class="dashboard">
+    <h2>Welcome, {{ request.user.username }}! 👋</h2>
+    <p>Thank you for supporting organ donation. Here's what you can do:</p>
+    
+    <ul>
+        <li><a href="{% url 'check_eligibility' %}">Check Organ Donation Eligibility</a></li>
+        <li><a href="{% url 'register' %}">Register as a Donor</a></li>
+        <li><a href="#">View QR Donor Certificate</a></li>
+        <li><a href="{% url 'myths' %}">Explore Myths & Facts</a></li>
+        <li><a href="{% url 'logout' %}">Logout</a></li>
+    </ul>
+</div>
+{% endblock %}
