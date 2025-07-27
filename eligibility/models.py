@@ -1,6 +1,8 @@
 from django.db import models
+from django.contrib.auth.models import User # Assuming you have a User model for authentication
 
 class EligibilityCheck(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE,default=1) 
     age = models.IntegerField()
     bmi = models.FloatField()
     chronic_disease = models.BooleanField()
