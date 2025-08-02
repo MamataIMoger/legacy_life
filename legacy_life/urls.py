@@ -3,6 +3,7 @@ from django.urls import path, include
 from core import views as core_views
 
 urlpatterns = [
+
     path('admin/', admin.site.urls),
 
     # Home page
@@ -16,7 +17,13 @@ urlpatterns = [
 
     # Eligibility check
     path('eligibility/', include('eligibility.urls')),
+
+    # Myth Vs Facts page
     path('myths/', include('mythbuster.urls')),
+
+    # Simulator
+    path('simulator/', include('simulator.urls')),
+
 
 ]
 
@@ -28,4 +35,3 @@ urlpatterns += [
     path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(template_name='password_reset_confirm.html'), name='password_reset_confirm'),
     path('reset/done/', auth_views.PasswordResetCompleteView.as_view(template_name='password_reset_complete.html'), name='password_reset_complete'),
 ]
-

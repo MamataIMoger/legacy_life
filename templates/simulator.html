@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Donation Impact Simulator{% endblock %}
+
+{% block content %}
+
+<h2 style="text-align: center; margin-top: 20px;">🎯 Donation Impact Simulator</h2>
+
+<div style="max-width: 600px; margin: auto; text-align: center;">
+    <p>Use the slider below to see how increasing organ donors impacts lives saved.</p>
+
+    <form method="POST">
+        {% csrf_token %}
+        <label for="increase">Increase in Organ Donors (%)</label>
+        <input type="range" id="increase" name="increase" min="0" max="100" value="10" oninput="document.getElementById('val').innerText=this.value + '%'">
+        <p>Selected Increase: <span id="val">10%</span></p>
+
+        <button type="submit" style="background: green; color: white; padding: 10px 20px; border: none; border-radius: 5px;">
+            🔍 Simulate Impact
+        </button>
+    </form>
+</div>
+{% endblock %}
+
