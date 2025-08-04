@@ -24,6 +24,8 @@ urlpatterns = [
     # Simulator
     path('simulator/', include('simulator.urls')),
 
+    # Inspiring Stories
+    path('stories/', include('stories.urls')),
 
 ]
 
