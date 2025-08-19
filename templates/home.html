@@ -17,7 +17,7 @@
 </section>
 
 <section class="actions">
-    <a class="btn pledge" href="#">Pledge Organs</a>
+    <a class="btn pledge" href="{% url 'pledges:pledge_form' %}">Pledge Organs</a>
     <a class="btn donate" href="#">Donate Funds</a>
     <a class="btn simulator" href="{% url 'simulator_home' %}"
     style="background: #366ea2; color: white; padding: 12px 25px; text-decoration: none; border-radius: 8px;">
@@ -27,6 +27,28 @@
     style="background: #6c499a; color: rgba(198, 195, 195, 0.836); padding: 12px 25px; text-decoration: none; border-radius: 8px;">
     📖 Read Inspirational Stories
     </a>
+    <a class="btn important_dates" href="{% url 'important_dates:important_dates_list' %}" >
+    📅 View Important Dates
+    </a>
+
+
+
+<!-- ✅ Important Dates Preview Section -->
+<section class="important-dates-preview">
+    <h2>📅 Upcoming Important Dates</h2>
+    <ul>
+        {% for date in preview_dates %}
+            <li>
+                <strong>{{ date.title }}</strong> – {{ date.date }}
+                <p>{{ date.description|truncatechars:80 }}</p>
+            </li>
+        {% empty %}
+            <li>No upcoming dates available right now.</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'important_dates:important_dates_list' %}">See All Dates →</a>
+</section>
+<!-- ✅ End of Important Dates Preview -->
 
 </section>
 
@@ -48,6 +70,18 @@
         <iframe width="560" height="315"
             src="https://www.youtube.com/embed/Z1nARoHY_oQ"
             title="Organ Donation Awareness in Kannada"
+            frameborder="0"
+            allowfullscreen>
+        </iframe>
+    </div>
+</section>
+
+<section class="video">
+    <h3>अंगदान जागरूकता वीडियो </h3>
+    <div class="video-container">
+        <iframe width="560" height="315"
+            src="https://www.youtube.com/embed/i49jhfFE-qw"
+            title="Organ Donation Awareness Video in Hindi"
             frameborder="0"
             allowfullscreen>
         </iframe>
