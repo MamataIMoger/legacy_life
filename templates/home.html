@@ -17,12 +17,16 @@
 </section>
 
 <section class="actions">
+    {% comment %}
     <a class="btn pledge" href="{% url 'pledges:pledge_form' %}">Pledge Organs</a>
+    {% endcomment %}
+
     <a class="btn donate" href="#">Donate Funds</a>
     <a class="btn simulator" href="{% url 'simulator_home' %}"
     style="background: #366ea2; color: white; padding: 12px 25px; text-decoration: none; border-radius: 8px;">
      Try the Donation Simulator
     </a>
+    {% comment %}
     <a class="btn stories" href="{% url 'stories' %}" 
     style="background: #6c499a; color: rgba(198, 195, 195, 0.836); padding: 12px 25px; text-decoration: none; border-radius: 8px;">
     📖 Read Inspirational Stories
@@ -30,9 +34,10 @@
     <a class="btn important_dates" href="{% url 'important_dates:important_dates_list' %}" >
     📅 View Important Dates
     </a>
+    {% endcomment %}
 
 
-
+{% comment %}
 <!-- ✅ Important Dates Preview Section -->
 <section class="important-dates-preview">
     <h2>📅 Upcoming Important Dates</h2>
@@ -51,6 +56,7 @@
 <!-- ✅ End of Important Dates Preview -->
 
 </section>
+{% endcomment %}
 
 <section class="video">
     <h3>Inspiring Organ Donation Journey</h3>
@@ -87,5 +93,6 @@
         </iframe>
     </div>
 </section>
+
 
 {% endblock %}
