@@ -1,64 +1,40 @@
 from django.shortcuts import render
-from .forms import EligibilityForm
-from .models import EligibilityCheck
-from .utils import evaluate_eligibility  
+from .models import Hospital
 
 def check_eligibility(request):
+    hospitals = None
     result = None
-    hospitals = []
-    ineligibility_reason = ""
-    advice = ""
 
-    if request.method == 'POST':
-        form = EligibilityForm(request.POST)
-        if form.is_valid():
-            age = form.cleaned_data['age']
-            bmi = form.cleaned_data['bmi']
-            chronic = form.cleaned_data['chronic_disease']
-            infection = form.cleaned_data['infection']
+    if request.method == "POST":
+        try:
+            age = int(request.POST.get("age"))
+            bmi = float(request.POST.get("bmi"))
+        except (TypeError, ValueError):
+            result = "Invalid input. Please enter correct values."
+            return render(request, "check.html", {"result": result, "hospitals": hospitals})
 
-            if 18 <= age <= 65 and 18.5 <= bmi <= 30 and not chronic and not infection:
-                is_eligible = True
-                result = 'Eligible'
-                hospitals = [
-                    {"name": "Apollo Hospital", "location": "Bangalore", "website": "https://www.apollohospitals.com"},
-                    {"name": "Fortis Health", "location": "Mumbai", "website": "https://www.fortishealthcare.com"},
-                    {"name": "AIIMS", "location": "Delhi", "website": "https://www.aiims.edu"},
-                    {"name": "Manipal Hospital", "location": "Hyderabad", "website": "https://www.manipalhospitals.com"},
-                ]
-            else:
-                is_eligible = False
-                result = 'Not Eligible'
+        chronic_disease = request.POST.get("chronic_disease") == "yes"
+        infection = request.POST.get("infection") == "yes"
+        recent_surgery = request.POST.get("recent_surgery") == "yes"
+        cancer_history = request.POST.get("cancer_history") == "yes"
+        substance_abuse = request.POST.get("substance_abuse") == "yes"
+        pregnant = request.POST.get("pregnant") == "yes"
 
-                # Identify reason and give advice
-                if age < 18 or age > 65:
-                    ineligibility_reason = "Your age is not in the eligible range (18–65)."
-                    advice = "You can still support organ donation by encouraging others or registering as a tissue donor."
-                elif bmi < 18.5 or bmi > 30:
-                    ineligibility_reason = "Your BMI is outside the healthy donation range (18.5–30)."
-                    advice = "Try to achieve a healthier BMI and consult your doctor for further evaluation."
-                elif chronic:
-                    ineligibility_reason = "You have a major chronic disease."
-                    advice = "Organ donation might not be possible now, but you can still pledge your eyes or tissues."
-                elif infection:
-                    ineligibility_reason = "You have an active infection."
-                    advice = "Once the infection is treated and cleared, you can re-check eligibility."
+        is_eligible = (
+            18 <= age <= 65 and
+            18.5 <= bmi <= 24.9 and
+            not chronic_disease and
+            not infection and
+            not recent_surgery and
+            not cancer_history and
+            not substance_abuse and
+            not pregnant
+        )
 
-            # Save record
-            EligibilityCheck.objects.create(
-                age=age,
-                bmi=bmi,
-                chronic_disease=chronic,
-                infection=infection,
-                is_eligible=is_eligible
-            )
-    else:
-        form = EligibilityForm()
+        if is_eligible:
+            result = "Congratulations! You are eligible for organ donation."
+            hospitals = Hospital.objects.all()
+        else:
+            result = "Sorry, you are not eligible for organ donation."
 
-    return render(request, 'check.html', {
-        'form': form,
-        'result': result,
-        'hospitals': hospitals,
-        'ineligibility_reason': ineligibility_reason,
-        'advice': advice
-    })
+    return render(request, "check.html", {"result": result, "hospitals": hospitals})

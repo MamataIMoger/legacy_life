@@ -5,6 +5,15 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from eligibility.models import EligibilityCheck, Hospital
 
+# Additional imports for certificate
+import qrcode
+import base64
+from io import BytesIO
+from django.http import HttpResponse
+from django.template.loader import render_to_string
+from xhtml2pdf import pisa
+
+
 def register(request):
     if request.method == 'POST':
         username = request.POST['username']
@@ -27,7 +36,7 @@ def login_view(request):
         if user is not None:
             login(request, user)
             messages.success(request, "Logged in successfully")
-            return redirect('dashboard')  # redirecting to dashboard after login
+            return redirect('dashboard')
         else:
             messages.error(request, "Invalid credentials")
             return redirect('login')
@@ -50,11 +59,11 @@ def dashboard(request):
     ineligibility_reason = None
     advice = None
 
-    # Flags for journey timeline
-    has_registered = True  # Always true since user is logged in
+    # Journey timeline flags
+    has_registered = True
     has_checked_eligibility = False
     has_chosen_hospital = False
-    has_certificate = False  # You can extend this later with actual certificate logic
+    has_certificate = False
 
     if latest_check:
         has_checked_eligibility = True
@@ -65,7 +74,7 @@ def dashboard(request):
 
             if latest_check.selected_hospital:
                 has_chosen_hospital = True
-                has_certificate = True  # For now, assume certificate is issued once hospital is selected
+                has_certificate = True
         else:
             result = "Ineligible"
             reasons = []
@@ -95,3 +104,41 @@ def dashboard(request):
         'has_chosen_hospital': has_chosen_hospital,
         'has_certificate': has_certificate,
     })
+
+
+@login_required
+def generate_certificate(request):
+    user = request.user
+
+    latest_check = EligibilityCheck.objects.filter(
+        user=user,
+        is_eligible=True,
+        selected_hospital__isnull=False
+    ).first()
+
+    if not latest_check:
+        messages.error(request, "You must complete eligibility check and select hospital before downloading certificate.")
+        return redirect('dashboard')
+
+    # Create QR code for user verification URL (customize path if needed)
+    profile_url = request.build_absolute_uri(f"/donor-profile/{user.id}/")
+    qr = qrcode.make(profile_url)
+    qr_io = BytesIO()
+    qr.save(qr_io, format='PNG')
+    qr_base64 = base64.b64encode(qr_io.getvalue()).decode('utf-8')
+
+    # Render HTML to PDF
+    html = render_to_string("certificate_template.html", {
+        "donor": user,
+        "check": latest_check,
+        "qr_code": qr_base64,
+    })
+
+    pdf_io = BytesIO()
+    pisa_status = pisa.CreatePDF(html, dest=pdf_io)
+    if pisa_status.err:
+        return HttpResponse("Error generating PDF", status=500)
+
+    response = HttpResponse(pdf_io.getvalue(), content_type='application/pdf')
+    response['Content-Disposition'] = 'attachment; filename="donor_certificate.pdf"'
+    return response

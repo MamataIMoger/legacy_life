@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Eligibility Result</title>
+</head>
+<body>
+    <h1>Organ Donation Eligibility Result</h1>
+
+    {% if is_eligible %}
+        <p style="color: green;">✅ You are eligible for organ donation.</p>
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <h3>Select a Hospital:</h3>
+
+            <label>
+                <input type="radio" name="hospital" value="Apollo Hospital, Bangalore|https://www.apollohospitals.com" required>
+                <b>Apollo Hospital</b><br>
+                📍 Bangalore<br>
+                🌐 <a href="https://www.apollohospitals.com" target="_blank">apollohospitals.com</a>
+            </label>
+            <br><br>
+
+            <label>
+                <input type="radio" name="hospital" value="Fortis Health, Mumbai|https://www.fortishealthcare.com">
+                <b>Fortis Health</b><br>
+                📍 Mumbai<br>
+                🌐 <a href="https://www.fortishealthcare.com" target="_blank">fortishealthcare.com</a>
+            </label>
+            <br><br>
+
+            <label>
+                <input type="radio" name="hospital" value="Manipal Hospital, Delhi|https://www.manipalhospitals.com">
+                <b>Manipal Hospital</b><br>
+                📍 Delhi<br>
+                🌐 <a href="https://www.manipalhospitals.com" target="_blank">manipalhospitals.com</a>
+            </label>
+            <br><br>
+
+            <button type="submit">Submit Hospital</button>
+        </form>
+
+    {% else %}
+        <p style="color: red;">❌ Sorry, you are not eligible for organ donation.</p>
+    {% endif %}
+</body>
+</html>
