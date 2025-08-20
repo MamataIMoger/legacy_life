@@ -1,5 +1,3 @@
-print("✅ Simulator URLs file is being loaded!")
-
 from django.urls import path
 from . import views
 
