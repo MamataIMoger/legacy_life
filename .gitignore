@@ -22,3 +22,6 @@ Thumbs.db
 
 # Static files
 staticfiles/
+
+#sensitive data (SECRET_KEY, DEBUG) is safely stored in .env instead of being hardcoded in settings.py
+.env
