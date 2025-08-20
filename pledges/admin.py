@@ -1,3 +1,6 @@
 from django.contrib import admin
+from .models import Pledge
 
-# Register your models here.
+@admin.register(Pledge)
+class PledgeAdmin(admin.ModelAdmin):
+    list_display = ('full_name', 'email', 'blood_group', 'date_pledged')
