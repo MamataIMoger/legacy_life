@@ -2,9 +2,9 @@ from django.db import models
 from django.contrib.auth.models import User
 
 class Hospital(models.Model):
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=200)  
     address = models.TextField()
-    website = models.URLField()
+    website = models.URLField(blank=True, null=True)
 
     def __str__(self):
         return self.name
@@ -25,7 +25,7 @@ class EligibilityCheck(models.Model):
 
     selected_hospital = models.ForeignKey(Hospital, on_delete=models.SET_NULL, null=True, blank=True)
 
-    transplant_type = models.CharField(max_length=100, blank=True, null=True)
+    transplant_type = models.CharField(max_length=100, blank=True, null=True)  # Kidney, Eye, Heart, Liver
     organ_donation_thoughts = models.TextField(blank=True, null=True)
 
     def __str__(self):

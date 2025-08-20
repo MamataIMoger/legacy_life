@@ -1,0 +1,146 @@
+[
+  {
+    "model": "eligibility.hospital",
+    "pk": 1,
+    "fields": {
+      "name": "Apollo Hospitals",
+      "address": "Bannerghatta Road, Bangalore, Karnataka",
+      "website": "https://www.apollohospitals.com/"
+    }
+  },
+  {
+    "model": "eligibility.hospital",
+    "pk": 2,
+    "fields": {
+      "name": "Manipal Hospital",
+      "address": "Old Airport Road, Bangalore, Karnataka",
+      "website": "https://www.manipalhospitals.com/"
+    }
+  },
+  {
+    "model": "eligibility.hospital",
+    "pk": 3,
+    "fields": {
+      "name": "Narayana Health",
+      "address": "Bommasandra, Bangalore, Karnataka",
+      "website": "https://www.narayanahealth.org/"
+    }
+  },
+  {
+    "model": "eligibility.hospital",
+    "pk": 12,
+    "fields": {
+      "name": "Medanta – The Medicity",
+      "address": "Sector 38, Gurugram, Haryana",
+      "website": "https://www.medanta.org"
+    }
+  },
+  {
+    "model": "eligibility.hospital",
+    "pk": 13,
+    "fields": {
+      "name": "Fortis Memorial Research Institute",
+      "address": "Sector 44, Gurugram, Haryana",
+      "website": "https://www.fortishealthcare.com"
+    }
+  },
+  {
+    "model": "eligibility.hospital",
+    "pk": 14,
+    "fields": {
+      "name": "Max Hospital (Saket)",
+      "address": "Press Enclave Road, Saket, New Delhi",
+      "website": "https://www.maxhealthcare.in"
+    }
+  },
+  {
+    "model": "eligibility.hospital",
+    "pk": 15,
+    "fields": {
+      "name": "Sir Ganga Ram Hospital",
+      "address": "Rajinder Nagar, New Delhi",
+      "website": "https://www.sgrh.com"
+    }
+  },
+  {
+    "model": "eligibility.hospital",
+    "pk": 16,
+    "fields": {
+      "name": "Kokilaben Dhirubhai Ambani Hospital",
+      "address": "Four Bungalows, Andheri West, Mumbai",
+      "website": "https://www.kokilabenhospital.com"
+    }
+  },
+  {
+    "model": "eligibility.hospital",
+    "pk": 17,
+    "fields": {
+      "name": "GMCH Nagpur",
+      "address": "Medical Square, Nagpur, Maharashtra",
+      "website": "http://gmcnagpur.org.in"
+    }
+  },
+  {
+    "model": "eligibility.hospital",
+    "pk": 18,
+    "fields": {
+      "name": "AIIMS Nagpur",
+      "address": "MIHAN, Nagpur, Maharashtra",
+      "website": "https://aiimsnagpur.edu.in"
+    }
+  },
+  {
+    "model": "eligibility.hospital",
+    "pk": 19,
+    "fields": {
+      "name": "Sassoon General Hospital",
+      "address": "Rasta Peth, Pune, Maharashtra",
+      "website": "http://sassoonhospitalpune.com"
+    }
+  },
+  {
+    "model": "eligibility.hospital",
+    "pk": 20,
+    "fields": {
+      "name": "New Civil Hospital",
+      "address": "Majura Gate, Surat, Gujarat",
+      "website": "https://civilhospitalsurat.in"
+    }
+  },
+  {
+    "model": "eligibility.hospital",
+    "pk": 21,
+    "fields": {
+      "name": "PGIMER Chandigarh",
+      "address": "Sector 12, Chandigarh",
+      "website": "https://pgimer.edu.in"
+    }
+  },
+  {
+    "model": "eligibility.hospital",
+    "pk": 22,
+    "fields": {
+      "name": "Rela Institute & Medical Centre",
+      "address": "Chromepet, Chennai",
+      "website": "https://www.relainstitute.com"
+    }
+  },
+  {
+    "model": "eligibility.hospital",
+    "pk": 23,
+    "fields": {
+      "name": "Apollo Hospitals (Greams Road)",
+      "address": "Greams Lane, Chennai",
+      "website": "https://chennai.apollohospitals.com"
+    }
+  },
+  {
+    "model": "eligibility.hospital",
+    "pk": 24,
+    "fields": {
+      "name": "Yashoda Hospitals",
+      "address": "Secunderabad, Hyderabad",
+      "website": "https://www.yashodahospitals.co"
+    }
+  }
+]
