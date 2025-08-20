@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Pledge Organs - Legacy Life{% endblock %}
+
+{% block content %}
+<div style="max-width: 650px; margin: auto; padding: 20px;">
+    <h2 style="text-align:center; color: #28a745;">💚 Pledge to Donate Organs</h2>
+    <p style="text-align:center; font-size: 16px;">
+        Every pledge brings hope to someone in need. Fill in your details below to make a difference.
+    </p>
+
+    <form method="POST" style="background: #f8f9fa; padding: 20px; border-radius: 8px;">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <div style="text-align:center;">
+            <button type="submit" style="
+                background:#28a745;
+                color:white;
+                padding: 10px 25px;
+                font-size: 16px;
+                border:none;
+                border-radius: 6px;
+                cursor:pointer;
+            ">
+                ✅ Submit Pledge
+            </button>
+        </div>
+    </form>
+</div>
+{% endblock %}
