@@ -1,3 +1,6 @@
 from django.contrib import admin
+from .models import ImportantDate
 
-# Register your models here.
+@admin.register(ImportantDate)
+class ImportantDateAdmin(admin.ModelAdmin):
+    list_display = ("title", "date", "description")

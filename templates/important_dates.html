@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center mb-4">🌍 Important Organ Donation Dates</h2>
+
+    <table class="table table-bordered table-striped text-center shadow-lg">
+        <thead class="table-dark">
+            <tr>
+                <th>Date</th>
+                <th>Event</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in important_dates %}
+            <tr>
+                <td>{{ item.date }}</td>
+                <td>{{ item.event }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

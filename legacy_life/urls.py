@@ -1,6 +1,10 @@
 from django.contrib import admin
 from django.urls import path, include
 from core import views as core_views
+from django.contrib.auth import views as auth_views
+from django.conf import settings
+from django.conf.urls.static import static
+
 
 urlpatterns = [
 
@@ -27,6 +31,12 @@ urlpatterns = [
     # Inspiring Stories
     path('stories/', include('stories.urls')),
 
+    # Pledge Section
+    path('pledges/', include(('pledges.urls', 'pledges'), namespace='pledges')),
+
+
+    # Important Dates
+    path('important-dates/', include('important_dates.urls')),
 ]
 
 from django.contrib.auth import views as auth_views
@@ -36,4 +46,9 @@ urlpatterns += [
     path('password-reset/done/', auth_views.PasswordResetDoneView.as_view(template_name='password_reset_done.html'), name='password_reset_done'),
     path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(template_name='password_reset_confirm.html'), name='password_reset_confirm'),
     path('reset/done/', auth_views.PasswordResetCompleteView.as_view(template_name='password_reset_complete.html'), name='password_reset_complete'),
+    
 ]
+
+#adding static serving in DEBUG
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
