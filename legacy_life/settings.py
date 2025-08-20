@@ -12,16 +12,18 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 import os
 from pathlib import Path
+from decouple import config
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-b(64l9#@0#z^ule@b7*n0*$8$uc6cx_q-xp1uk(5j_^fejdzxw'
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -43,6 +45,11 @@ INSTALLED_APPS = [
     'accounts',
     'eligibility',  # Uncomment this line if the eligibility app is included 
     'mythbuster', #Added this feature on 22/07 temporarily
+    'simulator' , #Refiltered this feature from scratch on 2/8/25
+    'stories.apps.StoriesConfig', # Inspirational stories feature added on 3/8/25
+    'pledges.apps.PledgesConfig',# Readded this feature on 11/8/25
+    'important_dates', # Includes important dates related to organ donation (Added on 18/8/25)
+    
 ]
 
 MIDDLEWARE = [
@@ -121,6 +128,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
+# Media (for story cover images, audio)
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
 STATIC_URL = 'static/'
 
 
@@ -134,8 +145,3 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-# Email backend for password reset (development only)
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-
-DEFAULT_FROM_EMAIL = 'noreply@legacylife.com'
