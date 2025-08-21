@@ -1,53 +1,75 @@
-{% extends "base.html" %}
-{% block title %}Stories{% endblock %}
+{% extends 'base.html' %}
+{% load static %}
+
 {% block content %}
-<div class="container mt-4">
-  <h1 class="mb-3">Stories</h1>
-
-  <form method="get" class="mb-3 d-flex gap-2">
-    <input class="form-control" type="text" name="q" placeholder="Search stories..." value="{{ q }}">
-    <input class="form-control" type="text" name="category" placeholder="Category" value="{{ active_category }}">
-    <button class="btn btn-primary" type="submit">Search</button>
-    {% if q or active_category %}<a class="btn btn-outline-secondary" href="{% url 'stories:list' %}">Clear</a>{% endif %}
-  </form>
-
-  <div class="mb-3">
-    <strong>Tags:</strong>
-    <a href="{% url 'stories:list' %}" class="badge text-bg-secondary">All</a>
-    {% for t in tags %}
-      <a href="{% url 'stories:by_tag' t.slug %}" class="badge text-bg-secondary">{{ t.name }}</a>
-    {% endfor %}
-  </div>
-
-  <div class="row g-3">
-    {% for s in stories %}
-      <div class="col-md-4">
-        <div class="card h-100">
-          {% if s.cover %}<img src="{{ s.cover.url }}" class="card-img-top" alt="{{ s.title }}">{% endif %}
-          <div class="card-body">
-            <h5 class="card-title">{{ s.title }}</h5>
-            {% if s.summary %}<p class="card-text">{{ s.summary|truncatewords:30 }}</p>{% endif %}
-            <a href="{% url 'stories:detail' s.slug %}" class="btn btn-sm btn-primary">Read</a>
-          </div>
+<div class="container" style="max-width: 900px; margin: 2rem auto;">
+    {% if messages %}
+        <div>
+            {% for message in messages %}
+                <div style="padding:10px; margin-bottom:8px; border:1px solid #ddd; border-left:4px solid #4caf50;">
+                    {{ message }}
+                </div>
+            {% endfor %}
         </div>
-      </div>
-    {% empty %}
-      <p>No stories found.</p>
-    {% endfor %}
-  </div>
+    {% endif %}
 
-  {% if is_paginated %}
-  <nav class="mt-4">
-    <ul class="pagination">
-      {% if page_obj.has_previous %}
-        <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}&q={{ q }}&category={{ active_category }}">Previous</a></li>
-      {% endif %}
-      <li class="page-item disabled"><span class="page-link">Page {{ page_obj.number }} of {{ paginator.num_pages }}</span></li>
-      {% if page_obj.has_next %}
-        <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}&q={{ q }}&category={{ active_category }}">Next</a></li>
-      {% endif %}
-    </ul>
-  </nav>
-  {% endif %}
+    <h1>Inspirational Stories</h1>
+    <p>Read real stories from our community. Share yours below!</p>
+
+    <!-- Approved stories -->
+    <section style="margin-top: 1.5rem;">
+        <h2>Pre-existing Stories</h2>
+        {% if stories %}
+            <ul style="list-style:none; padding:0;">
+                {% for s in stories %}
+                    <li style="border:1px solid #eee; border-radius:12px; padding:16px; margin-bottom:12px;">
+                        <h3 style="margin:0 0 6px 0;">{{ s.title }}</h3>
+                        <small>
+                            {% if s.author_name %}by {{ s.author_name }}, {% endif %}
+                            {{ s.created_at|date:'M d, Y' }}
+                        </small>
+                        {% if s.cover %}
+                            <div style="margin:10px 0;">
+                                <img src="{{ s.cover.url }}" alt="{{ s.title }}" style="max-width:100%; height:auto; border-radius:8px;">
+                            </div>
+                        {% endif %}
+                        <p style="white-space:pre-line;">{{ s.body }}</p>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No stories yet. Be the first to share!</p>
+        {% endif %}
+    </section>
+
+    <!-- Submission form -->
+    <section style="margin-top: 2rem;">
+        <h2>Share Your Story</h2>
+        <form method="post" enctype="multipart/form-data" style="display:grid; gap:12px;">
+            {% csrf_token %}
+            <div>
+                <label for="id_title">Title</label>
+                {{ form.title }}
+            </div>
+            <div>
+                <label for="id_author_name">Your Name (optional)</label>
+                {{ form.author_name }}
+            </div>
+            <div>
+                <label for="id_body">Your Story</label>
+                {{ form.body }}
+            </div>
+            <div>
+                <label for="id_cover">Image (optional)</label>
+                {{ form.cover }}
+            </div>
+            <button type="submit" style="padding:10px 14px; border-radius:8px; border:0; background:#4caf50; color:white; cursor:pointer;">
+                Submit Story
+            </button>
+        </form>
+        <p style="font-size:0.9rem; color:#666; margin-top:6px;">
+            Submissions are reviewed by an admin before they appear.
+        </p>
+    </section>
 </div>
 {% endblock %}

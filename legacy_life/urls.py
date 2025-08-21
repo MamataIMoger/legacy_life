@@ -29,8 +29,7 @@ urlpatterns = [
     path('simulator/', include('simulator.urls')),
 
     # Inspiring Stories
-    path('stories/', include('stories.urls')),
-
+    path("stories/", include("stories.urls", namespace="stories")),
     # Pledge Section
     path('pledges/', include(('pledges.urls', 'pledges'), namespace='pledges')),
 

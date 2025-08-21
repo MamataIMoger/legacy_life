@@ -17,6 +17,8 @@ from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+MEDIA_URL = '/media/' # For story page image upload (20/8/25)
+MEDIA_ROOT = BASE_DIR / 'media'# For story page image/upload
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
@@ -40,13 +42,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_extensions',
 
     'core',
     'accounts',
     'eligibility',  # Uncomment this line if the eligibility app is included 
     'mythbuster', #Added this feature on 22/07 temporarily
     'simulator' , #Refiltered this feature from scratch on 2/8/25
-    'stories.apps.StoriesConfig', # Inspirational stories feature added on 3/8/25
+    'stories', # Inspirational stories feature added on 3/8/25
     'pledges.apps.PledgesConfig',# Readded this feature on 11/8/25
     'important_dates', # Includes important dates related to organ donation (Added on 18/8/25)
     
